@@ -1,8 +1,29 @@
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
-
+<script>
+	function send(idx){
+		if(idx==1){
+			var x=confirm("정말 숙소를 삭제하시겠습니까?");
+			if(x==true){
+				roomForm.action="delroom.jsp";
+			}
+			else{
+				return;
+			}
+		}
+		else if(idx==2){
+			var x=confirm("정말 예약을 취소하시겠습니까?");
+			if(x==true){
+				roomForm.action="delbook.jsp";
+			}
+			else{
+				return;
+			}
+		}
+		roomForm.submit();
+	}
+</script>
 <style>
 *{
 	font-family: 'Nanum Gothic Coding', monospace;
@@ -37,7 +58,7 @@ div#form2{
 	margin-right:20%;
 	background-color:white;
 }
-input[type=button],input[type=submit]{
+input[type=button]{
 	margin-left:20px;
 	margin-right:20px;
 	margin-top:20px;
@@ -51,10 +72,11 @@ input[type=button],input[type=submit]{
 	font-weight:bold;
 	color:#555555;
 }
-input[type=button]:hover,input[type=submit]:hover{
+input[type=button]:hover{
 	background-color:#dddddd;
 }
 table#room{
+	width:50%;
 	padding:10px;
 	border:1px solid #eeeeee;
 	box-shadow: 0px 5px 10px #eeeeee;
@@ -73,6 +95,30 @@ table#room a>span{
 table#room a>b{
 	font-family: 'Gothic A1', sans-serif;
 }
+table#book{
+	border:0px;
+	text-align:center;	
+	font-family: 'Gothic A1', sans-serif;
+	border-left:1px solid #eeeeee;
+	border-right:1px solid #eeeeee;
+}
+table#book tr th{
+	border:0px;
+	border-top:1px solid #eeeeee;
+	font-family: 'Gothic A1', sans-serif;
+}
+table#book tr td{
+	font-family: 'Gothic A1', sans-serif;
+	border-top:1px solid #eeeeee;
+	border-bottom:1px solid #eeeeee;
+
+}
+table#book input{
+	width:30px;
+	height:30px;
+	background-color:#FF8000;
+	color:white;
+}
 </style>
 <div id="form1">
 
@@ -80,9 +126,10 @@ table#room a>b{
 <p id="label">트래비룸 호스트 회원이 등록한 숙소 목록입니다.</p>
 
 <div id="form2">
-<form method="post" action="delroom.jsp">
+<form name="roomForm" method="post">
 <%
 String possible="";
+int i=0;
 String id=null;
 if(session.getAttribute("userId")!=null){
 	id=(String)session.getAttribute("userId");
@@ -109,34 +156,67 @@ try {
 		else{
 			possible="예약 불가능";
 		}
+		int code=rs.getInt("id");
 %>
 	<center>
 	<table id="room" border=1px cellspacing=0>
 		<tr>
-			<td><input type="checkbox" name="check" value=<%=rs.getString("id")%>></td>
+			<td colspan=2><input type="checkbox" name="check" value=<%=rs.getString("id")%>></td>
 		</tr>
 	   	<tr>
-	   		<td><a href="roominfo.jsp?re=<%=rs.getString("id")%>"><img src="traveroom_img/<%=rs.getString("imgpath")%>" width="500px" height="300px"></a></td>
+	   		<td align="center" colspan=2><a href="roominfo.jsp?re=<%=rs.getString("id")%>"><img src="traveroom_img/<%=rs.getString("imgpath")%>" width="500px" height="300px"></a></td>
 	   	</tr>
 	   	<tr>
 			<td>
-			<a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:red; font-weight:bold;"><%=possible %></span></a>
-			<a style="padding-left:200px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:#666666;"><%=rs.getString("city") %></span></a>
-	   		<a style="padding-left:20px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:#666666;"><%=rs.getString("type") %></span></a>
+				<a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>">
+					<span style="color:#666666;"><%=rs.getString("city") %>의 <%=rs.getString("type") %></span>
+				</a>
+			</td>
+			<td align="right">
+				<a style="padding-right:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:#FF8000; font-weight:bold;"><%=possible %></span></a>
 	   		</td>
 		</tr>
 		<tr>
-	   		<td><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><b style="color:#666666; font-size:15pt;"><%=rs.getString("name") %></b></a></td>
+	   		<td colspan=2><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><b style="color:#666666; font-size:15pt;"><%=rs.getString("name") %></b></a></td>
 	   	</tr>
 		<tr>
-			<td><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:#666666;">1인당 <%=rs.getString("price") %>원</span></a></td>
+			<td colspan=2><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:#666666;"><%=rs.getString("price") %>원/추가요금</span></a></td>
 		</tr>
 	   	 <tr>
-	   		<td><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span>평점 <%=rs.getString("grade") %>점</span></a></td>
+	   		<td colspan=2><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span>평점 <%=rs.getString("grade") %>점</span></a></td>
+	   	</tr>
+	   	<tr>
+	   		<td colspan=2 align="center">
+	   		<% 
+	   		PreparedStatement pstmt1=null;
+			pstmt1=con.prepareStatement("select * from book where id=?");
+			pstmt1.setInt(1,code);
+			ResultSet rs1 = pstmt1.executeQuery();
+			while(rs1.next()){
+			i++;%>
+			<table id="book" border cellspacing=0 width="500px">
+				<tr>
+					<th>예약자</th>
+					<th>숙박날짜</th>
+					<th>인원</th>
+					<th>가격</th>
+				</tr>
+				<tr>
+					<td><%=rs1.getString("name") %><br>(<%=rs1.getString("user_id") %>)</td>
+					<td><%=rs1.getString("checkin") %>~<%=rs1.getString("checkout") %></td>
+					<td><%=rs1.getInt("member") %>명</td>
+					<td><%=rs1.getInt("price") %>원</td>
+				</tr>
+			</table>
+		<%}
+		rs1.close();
+		pstmt1.close();%>
+	   		</td>
 	   	</tr>
 	</table><br><br>
 	</center>
 <% }
+	
 	rs.close();
 	pstmt.close();
 	con.close();
@@ -147,7 +227,7 @@ try {
 %>
 <center>
 	<a href="host.jsp"><input type="button" value="숙소 등록"></a>
-	<input type="submit" value="숙소 삭제">
+	<input type="button" onclick="send(1)" value="숙소 삭제">
 </center>
 </form>
 </div>

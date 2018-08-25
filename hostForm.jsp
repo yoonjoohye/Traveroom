@@ -20,7 +20,7 @@ function send(){
 </script>
 <style>
 *{
-	font-family: 'Nanum Gothic Coding', monospace;
+	font-family: 'Gothic A1', sans-serif;
 	color:gray;
 	font-weight:bold;
 }
@@ -81,7 +81,7 @@ input[type=button],input[type=reset]{
 	height:50px;
 	background-color:#eeeeee;
 	border:0px;
-	font-family: 'Nanum Gothic Coding', monospace;
+	font-family: 'Gothic A1', sans-serif;
 	font-size:12pt;
 	font-weight:bold;
 	color:#555555;

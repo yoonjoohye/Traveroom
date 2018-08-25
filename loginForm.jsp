@@ -54,7 +54,7 @@ table a{
 input{
 	width:300px;
 	height:50px;
-	border:1px solid #eeeeee;
+	border:1px solid #aaaaaa;
 }
 input[type=button]{
 	background-color:#eeeeee;

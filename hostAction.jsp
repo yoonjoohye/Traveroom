@@ -22,6 +22,7 @@ String city=multi.getParameter("roomCity");
 int price=Integer.parseInt(multi.getParameter("roomPrice"));
 String name=multi.getParameter("roomName");
 String explain=multi.getParameter("roomExplain");
+explain=explain.replace("\r\n","<br>");
 String num=multi.getParameter("roomNumber");
 String fileName =multi.getFilesystemName("roomImage");
 String img=path+"\\"+fileName;

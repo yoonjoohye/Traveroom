@@ -23,7 +23,7 @@ div#form1{
 }
 table#room{
 	display:inline-block;
-	margin-right:30px;
+	margin-right:12px;
 	float:left;
 	padding:10px;
 	border:1px solid #eeeeee;
@@ -57,7 +57,7 @@ try{
 	Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 	 
 	PreparedStatement pstmt=null;
-	pstmt = con.prepareStatement("select * from room where possible!=? LIMIT 3");
+	pstmt = con.prepareStatement("select * from room where possible!=? order by grade desc LIMIT 4");
 	pstmt.setString(1,"n");
     ResultSet rs = pstmt.executeQuery();
     while(rs.next()){
@@ -70,23 +70,26 @@ try{
     %>
     	<table id="room" border=1px cellspacing=0>
 	   	<tr>
-	   		<td><a href="roominfo.jsp?re=<%=rs.getString("id")%>"><img src="traveroom_img/<%=rs.getString("imgpath")%>" width="250px" height="150px"></a></td>
+	   		<td colspan=2><a href="roominfo.jsp?re=<%=rs.getString("id")%>"><img src="traveroom_img/<%=rs.getString("imgpath")%>" width="250px" height="150px"></a></td>
 	   	</tr>
-	   	<tr align="left">
-			<td>
-			<a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:#BA0202; font-weight:bold;"><%=possible %></span></a>
-			<a style="padding-left:55px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span><%=rs.getString("city") %></span></a>
-	   		<a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span><%=rs.getString("type") %></span></a>
+	   	<tr>
+			<td align="left">
+				<a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>">
+					<span style="color:#666666;"><%=rs.getString("city") %>의 <%=rs.getString("type") %></span>
+				</a>
+			</td>
+			<td align="right">
+				<a style="padding-right:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:#FF8000; font-weight:bold;"><%=possible %></span></a>
 	   		</td>
 		</tr>
-		<tr align="left">
-	   		<td><a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><b style="color:#888888; font-size:15pt;"><%=rs.getString("name") %></b></a></td>
+		<tr align="left" >
+	   		<td colspan=2><a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><b style="color:#888888; font-size:12pt;"><%=rs.getString("name") %></b></a></td>
 	   	</tr>
 		<tr align="left">
-			<td><a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span><%=rs.getString("price") %>원/추가요금</span></a></td>
+			<td colspan=2><a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span><%=rs.getString("price") %>원/추가요금</span></a></td>
 		</tr>
 	   	 <tr align="left">
-	   		<td><a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span>평점 <%=rs.getString("grade") %>점</span></a></td>
+	   		<td colspan=2><a style="padding-left:10px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span>평점 <%=rs.getString("grade") %>점</span></a></td>
 	   	</tr>
 	</table>
  <%}
