@@ -21,7 +21,7 @@ div#form1{
 div#city{
 	display:inline-block;
 	text-align:center;
-	line-height:280px;
+	line-height:290px;
 	font-weight:bold;
 	color:white;
 	font-family: 'Gothic A1', sans-serif;
@@ -30,6 +30,7 @@ div#city{
     height:300px; 
     background-size: cover;
 }
+
 div.a{
 	background-image: url(img/seoul.png);
 }
@@ -45,23 +46,27 @@ div.d{
 div.e{
 	background-image: url(img/jinju.png);
 }
+div#city:hover{
+	-webkit-filter: grayscale(100%);
+	filter: gray;
+}
 
 </style>
 <div id="label">가볼만한 여행장소</div>
 <div id="form1">
 <a href="parsing.jsp?re=수도권">
-	<div id="city" class="a">수도권 10선</div>
+	<div id="city" class="a">수도권 추천지</div>
 </a>
 <a href="parsing.jsp?re=강원권">
-	<div id="city" class="b">강원권 10선</div>
+	<div id="city" class="b">강원권 추천지</div>
 </a>
 <a href="parsing.jsp?re=충청권">
-	<div id="city" class="c">충청권 10선</div>
+	<div id="city" class="c">충청권 추천지</div>
 </a>
 <a href="parsing.jsp?re=전라권">
-	<div id="city" class="d">전라권 10선</div>
+	<div id="city" class="d">전라권 추천지</div>
 </a>
 <a href="parsing.jsp?re=경상권">
-	<div id="city" class="e">경상권 10선</div>
+	<div id="city" class="e">경상권 추천지</div>
 </a>
 </div>

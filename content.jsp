@@ -75,7 +75,7 @@ div#part{
 div#part1{
 	clear:both;
 	position:relative;
-	top:-350px;
+	top:-300px;
 }
 </style>
 

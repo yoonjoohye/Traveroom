@@ -58,7 +58,7 @@ String city=request.getParameter("re");
 %>
 <div id="form1">
 <div id="label"><%=city%> 여행지</div>
-<p id="label">한국인이 꼭 가봐야할 <%=city%>여행 10선</p>
+<p id="label">한국인이 꼭 가봐야할 <%=city%>여행지 추천 리스트</p>
 <div id="form2">
 <center>
 <br>
@@ -68,16 +68,16 @@ String url = "http://korean.visitkorea.or.kr/kor/bz15/mustgo100/mustgo100_list.j
 try{
     Document doc = Jsoup.connect(url).get();
 
-    for (int i=1; i<=10; i++){
-    	int rank=i;
-        String title = doc.select("#content > div.doc > div > div.whereWrap.mustgo100 > ul > li[data-area="+city+"]:nth-child("+i+") > a > div.cnt > h3 > b").text();
-        String content = doc.select("#content > div.doc > div > div.whereWrap.mustgo100 > ul > li[data-area="+city+"]:nth-child("+i+") > a > div.cnt > ul > li:nth-child(1)").text();
-        String img_url = doc.select("#content > div.doc > div > div.whereWrap.mustgo100 > ul > li[data-area="+city+"]:nth-child("+i+") > a > div.pic > img").attr("src");
+    for (int i=1; i<=100; i++){
+    	String region = doc.select("#content > div.doc > div > div.whereWrap.mustgo100 > ul > li:nth-child("+i+")").attr("data-area");
+    	
+    	if(region.equals(city)){
+    		String title = doc.select("#content > div.doc > div > div.whereWrap.mustgo100 > ul > li:nth-child("+i+") > a > div.cnt > h3 > b").text();
+        	String content = doc.select("#content > div.doc > div > div.whereWrap.mustgo100 > ul > li:nth-child("+i+") > a > div.cnt > ul > li:nth-child(1)").text();
+        	String img_url = doc.select("#content > div.doc > div > div.whereWrap.mustgo100 > ul > li:nth-child("+i+") > a > div.pic > img").attr("src");
+    	
 %>
         <table border cellspacing=0>
-        	<tr>
-        		<td><b>NO.<%=rank %></b></td>
-        	</tr>
         	<tr>
         		<td><img src='<%=img_url%>' width=450px height=250px></td>
         	</tr>
@@ -90,6 +90,7 @@ try{
 		</table>
 		<br>
 <%
+    	}
     }
 
 }
