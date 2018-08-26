@@ -10,7 +10,7 @@ div#images{
 table#search{
 	position: relative;
 	z-index:2;
-	top:-530px;
+	top:-550px;
 	margin-left:35%;
 	margin-right:35%;
 	width:30%;
@@ -64,7 +64,7 @@ table#search input[type=submit]{
 .mySlides {
 	display:none;
 	width:100%;
-	height:600px;
+	height:650px;
 	background-color:black;
 	opacity: 0.65;
 }
@@ -109,13 +109,13 @@ div#part1{
 	<tr>	
 		<td style="padding-left:120px;">
 			<br>인원<br><br>
-			<input type="number" name="member" placeholder="인원을 입력해 주세요"/>명 
+			<input type="number" name="member" min=1 placeholder="인원을 입력해 주세요"/>명 
 		</td>
 	</tr>
 	<tr>
 		<td style="padding-left:120px;">
 			<br>가격<br><br>
-			<input type="number" name="price"  placeholder="가격을 입력해 주세요"/>원
+			<input type="number" name="price"  min=1 max=999999999 placeholder="가격을 입력해 주세요"/>원
 		</td>
 	</tr>
 	<tr>

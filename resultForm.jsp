@@ -124,8 +124,8 @@ table#room a>b{
 			<option value="울산">울산</option>
 		</select>
 		</td>
-		<td><input type="number" name="member" placeholder="인원"/>명</td>
-		<td><input type="number" name="price"  placeholder="가격"/>원</td>
+		<td><input type="number" name="member" min=1 placeholder="인원"/>명</td>
+		<td><input type="number" name="price" min=1 max=999999999 placeholder="가격"/>원</td>
 	</tr>
 </table>
 </form>
