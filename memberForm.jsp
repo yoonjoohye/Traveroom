@@ -36,6 +36,7 @@ div#form2{
 	background-color:white;
 }
 table{
+	width:100%;
 	border:0px;
 }
 table tr td{

@@ -59,19 +59,20 @@ label#title{
 input[type=text],select{
 	width:350px;
 	height:30px;
-	border:1px solid #eeeeee;
+	border:1px solid #cccccc;
 }
 textarea{
-	border:1px solid #eeeeee;
+	width:350px;
+	border:1px solid #cccccc;
 }
 input[type=number]{
 	width:330px;
 	height:30px;
-	border:1px solid #eeeeee;
+	border:1px solid #cccccc;
 }
 input[type=file]{
 	width:350px;
-	border:2px solid #eeeeee;
+	border:1px solid #cccccc;
 }
 input[type=button],input[type=reset]{
 	margin-left:20px;

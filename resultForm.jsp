@@ -55,7 +55,7 @@ table#search input[type=submit]{
 	margin-top:10px;
 	margin-bottom:10px;
 	font-family: 'Gothic A1', sans-serif;
-	font-size:20pt;
+	font-size:15pt;
 	font-weight:bold;
 	width:120px;
 	height:100px;
@@ -251,7 +251,7 @@ try {
 	    %>
 	    	<table id="room" border cellspacing=0>
 		   	<tr>
-		   		<td rowspan=4><a href="roominfo.jsp?re=<%=rs.getString("id")%>"><img src="traveroom_img/<%=rs.getString("imgpath")%>" width="100%" height="200px"></a></td>
+		   		<td rowspan=4 ><a href="roominfo.jsp?re=<%=rs.getString("id")%>"><img src="traveroom_img/<%=rs.getString("imgpath")%>" width="350px" height="200px"></a></td>
 		   		
 		   	</tr>
 		   	<tr>
@@ -272,7 +272,7 @@ try {
 		   		<td><a href="roominfo.jsp?re=<%=rs.getString("id") %>"><b style="font-size:20pt;"><%=rs.getString("name") %></b></a></td>
 		   	</tr>
 		   	<tr>
-				<td><a href="roominfo.jsp?re=<%=rs.getString("id") %>"><span><%=rs.getString("ex") %></span></a></td>
+				<td><a href="roominfo.jsp?re=<%=rs.getString("id") %>"><span>최대인원 <%=rs.getString("member") %>명</span></a></td>
 			</tr>
 		</table>
 	 <%}
