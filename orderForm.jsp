@@ -156,7 +156,7 @@ if(id==null){
 <%
 int member=0;
 int price=0;
-
+int point=0;
 try {
     String dbURL="jdbc:mysql://localhost:3306/room?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
     String dbID ="root";
@@ -185,11 +185,22 @@ try {
 	}
 		rs.close();
 		pstmt.close();
-	   	con.close();	
+		
+		PreparedStatement pstmt1=null;
+		pstmt1=con.prepareStatement("select * from point where user_id=?");
+		pstmt1.setString(1,id);
+		ResultSet rs1 = pstmt1.executeQuery();
+		
+		while(rs1.next()){
+			point+=rs1.getInt("point");
+		}
+		rs1.close();
+		pstmt1.close();
+		
+	   	con.close();
 } catch (Exception e) {
-	out.println("결과 조회가 없습니다.");
-    System.out.println("DB 연동 실패 " + e.getMessage());
 }
+
 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 Calendar c1 = Calendar.getInstance();
 String date1 = format.format(c1.getTime());
@@ -212,6 +223,13 @@ String date1 = format.format(c1.getTime());
 			<input type="number" name="member" id="member" onchange="ok()" value=<%=member%>>명
 			
 		</td>
+	</tr>
+	<tr>
+		<td>
+		전체 포인트 <%=point %>P<br>
+		잔액 포인트 <input type="text" name="nmg" id="nmg" value=<%=point %>>P
+		<br> 
+		<input type="number" name="point" id="point" onchange="discount()" value=0>P</td>
 	</tr>
 	<tr>
 		<td colspan=2>
@@ -259,5 +277,33 @@ function ok(){
 	}
 	total=Number(add)+<%=price%>;
 	document.getElementById("price").value=total;
+}
+function discount(){
+	var member=document.getElementById("member").value;
+	var price=Number(document.getElementById("price").value);
+	var nmg=Number(document.getElementById("nmg").value);
+	var point=Number(document.getElementById("point").value);
+	
+	var add=0;
+	if(member><%=member%>){
+		a=member-<%=member%>;
+		add=a*10000;
+	}
+	else{
+		add=0;
+	}
+	total=Number(add)+<%=price%>;
+	document.getElementById("price").value=total;
+	
+	if(nmg>point && price>point){
+		document.getElementById("nmg").value=<%=point%>-point;
+		document.getElementById("price").value=total-point;
+	}
+	else{
+		document.getElementById("point").value=0;
+		document.getElementById("nmg").value=<%=point%>;
+		document.getElementById("price").value=total;
+		return;
+	}
 }
 </script>

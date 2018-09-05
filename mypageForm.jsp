@@ -1,3 +1,4 @@
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
@@ -77,6 +78,28 @@ if(id==null){
 	out.println("location.href='index.jsp';");
 	out.println("</script>");
 }
+int point=0;
+try{
+	String DB_URL = "jdbc:mysql://localhost:3306/room?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
+	String DB_USER = "root";
+	String DB_PASSWORD= "1234";
+ 
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+
+	PreparedStatement pstmt=null;
+	pstmt = con.prepareStatement("select * from point where user_id=?");
+	pstmt.setString(1,id);
+	ResultSet rs = pstmt.executeQuery();
+    while(rs.next()){
+    	point+=rs.getInt("point");
+   	}
+    rs.close();
+    pstmt.close();
+    con.close(); 
+ }
+ catch(Exception e){
+ }
 %>
 <script>
 function send(index){
@@ -135,6 +158,10 @@ function send(index){
 	<tr>
 		<td width=120px>생년월일</td>
 		<td><input type="date" name="edit_birth" value="<%=birth%>"/></td>
+	</tr>
+	<tr>
+		<td height=50px>포인트</td>
+		<td><%=point%>P</td>
 	</tr>
 	<tr>
 		<td colspan=2 align="center">

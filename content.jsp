@@ -78,7 +78,11 @@ div#part1{
 	top:-300px;
 }
 </style>
-
+<script>
+window.onload =function () {
+	window.open("popup.jsp", "popup", "width=350, height=400, scrollbars= 0, toolbar=0, menubar=no");
+}
+</script>
 <div id="images">
   <img class="mySlides" src="img/banner1.jpg">
   <img class="mySlides" src="img/banner2.jpg">

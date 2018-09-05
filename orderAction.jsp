@@ -22,18 +22,18 @@
 	String name=request.getParameter("accountname");
 	String bank=request.getParameter("bank");
 	String num=request.getParameter("num");
-	
-   out.println(id);
-   out.println(userId);
-   out.println(checkin);
-   out.println(checkout);
-   out.println(member);
-   out.println(price);
-   out.println(name);
-   out.println(bank);
-   out.println(num);
+	int point=Integer.parseInt(request.getParameter("point"))*-1;
+
+	out.println(id);
+	out.println(userId);
+	out.println(checkin);
+	out.println(checkout);
+	out.println(member);
+	out.println(price);
+	out.println(name);
+	out.println(bank);
+	out.println(num);
 			
-	
 	try {
 	    // 드라이버 로딩
 	    String dbURL = "jdbc:mysql://localhost:3306/room?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
@@ -63,6 +63,13 @@
 	   	pstmt1.setInt(2, id);
 	   	pstmt1.executeUpdate();
 	   	pstmt1.close();
+	   	
+	   	PreparedStatement pstmt2=null; 
+	   	pstmt2 = con.prepareStatement("insert into point values(NULL,?,?,now())");
+	   	pstmt2.setString(1,userId);
+	   	pstmt2.setInt(2,point);
+	   	pstmt2.executeUpdate();
+	   	pstmt2.close();
 	   	
 	   	con.close();
 	   	

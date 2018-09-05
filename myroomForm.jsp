@@ -117,6 +117,7 @@ try {
    	pstmt1=con.prepareStatement("update room, book set possible=? where room.id=book.id AND book.checkout=?");
    	pstmt1.setString(1,"y");
    	pstmt1.setString(2,date);
+   	
    	pstmt1.executeUpdate();
 
    	pstmt1=null;
@@ -127,7 +128,8 @@ try {
 	
 	
 	PreparedStatement pstmt=null;
-	pstmt=con.prepareStatement("select * from room, book where book.id=room.id");
+	pstmt=con.prepareStatement("select * from book, room where book.id=room.id AND book.user_id=?");
+	pstmt.setString(1,id);
 	ResultSet rs = pstmt.executeQuery();
 	
 	while(rs.next()){
