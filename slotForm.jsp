@@ -1,11 +1,6 @@
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script>
-var d = new Date();
-d = new Date(d.getTime() - 3000000);
-var today="";
-var check=true;
 <%
 String id=null;
 if(session.getAttribute("userId")!=null){
@@ -17,6 +12,13 @@ if(id==null){
 	out.println("location.href='login.jsp';");
 	out.println("</script>");
 }
+%>
+<script>
+var d = new Date();
+d = new Date(d.getTime() - 3000000);
+var today="";
+var check=true;
+<%
 String d="";
 try{
 	String DB_URL = "jdbc:mysql://localhost:3306/room?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
