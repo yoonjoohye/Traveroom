@@ -123,7 +123,7 @@ input[type=submit]:hover{
  %>
 <table border cellspacing=0 id="reply">
 	<tr>
-		<td rowspan=2 height=50px>
+		<td rowspan=2 height=50px width=400px>
 			<span class="star-input">
 			  <span class="input1">
 			  <%for(int a=1; a<=5; a++){ 
@@ -144,7 +144,7 @@ input[type=submit]:hover{
 			<p><%= rs.getString("text")%></p>
 		</td>
 		<%if(rs.getString("user_id").equals(userId)){ %>
-		<td rowspan=2>
+		<td rowspan=2 >
 		<form method="post" action="delreply.jsp" >
 			<input type="hidden" value="<%=rs.getInt("code") %>" name="num1">
 			<input type="hidden" value="<%=rs.getInt("id") %>" name="num">
@@ -154,7 +154,7 @@ input[type=submit]:hover{
 		<%} %>
 	</tr>
 	<tr>
-		<td><small><%=rs.getString("user_id") %></small></td>
+		<td width="300px"><small><%=rs.getString("user_id") %></small></td>
 		<td align="left"><small><%=rs.getString("date") %></small></td>
 	</tr>
 </table>

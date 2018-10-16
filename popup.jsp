@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <style>
 	body{
-		background-image:URL(img/popup.png);
+		background-image:URL(img/event.jpg);
 		background-size: 100% 100%;
 	}
 	button{

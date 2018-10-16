@@ -151,7 +151,7 @@ try {
 	   		<td rowspan=4 align=right style="padding-right:30px;"><input type="button" onclick="cancel()" value="예약취소"></td>
 		</tr>
 		<tr>
-	   		<td><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><b style="color:#666666; font-size:20pt;"><%=rs.getString("name") %></b></a></td>
+	   		<td><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><b style="color:#666666; font-size:20pt;"><%=rs.getString("room.name") %></b></a></td>
 	   	</tr>
 		<tr>
 			<td><a style="padding-left:50px;" href="roominfo.jsp?re=<%=rs.getString("id") %>"><span style="color:#666666;"><%=rs.getString("price") %>원</span></a></td>
