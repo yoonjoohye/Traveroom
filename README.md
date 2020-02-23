@@ -1,14 +1,14 @@
 # Traveroom
 
-Travel+room = ✈️ Traveroom
-숙박예약 사이트 트래비룸 (게스트, 호스트, 관리자로 구성)
+> Travel+room = ✈️ Traveroom
+> 숙박예약 사이트 트래비룸 (게스트, 호스트, 관리자로 구성)
 
-여행이라는 주제로 숙박예약 사이트를 개발함
+> 여행이라는 주제로 숙박예약 사이트를 개발함
 
 
 Skills
 -----------------------------------
-JSP + apache + MySQL + Javascript + JQuery + JSoup Library(크롤링)
+> JSP + apache + MySQL + Javascript + JQuery + JSoup Library(크롤링)
 
 
 ScreenShots
