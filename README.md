@@ -16,11 +16,14 @@ ScreenShots
 
 ##### index
 
-JSoup 라이브러리를 활용하여 국내 여행지 100선을 크롤링 해옴
-검색은 집형태, 위치, 인원, 가격로 필터를 걸 수 있음
+
+
+
 ![image](https://user-images.githubusercontent.com/26542929/75114423-19bca580-5699-11ea-8cca-f06a42a410cd.png)
 ![image](https://user-images.githubusercontent.com/26542929/75114430-26d99480-5699-11ea-9d7a-3d744a1d614c.png)
+*JSoup 라이브러리를 활용하여 국내 여행지 100선을 크롤링 해옴*
 ![image](https://user-images.githubusercontent.com/26542929/75114437-30fb9300-5699-11ea-98ea-02175e217a20.png)
+*검색은 집형태, 위치, 인원, 가격로 필터를 걸 수 있음*
 ![image](https://user-images.githubusercontent.com/26542929/75114444-3658dd80-5699-11ea-8b2e-4c70d78a5eb6.png)
 ![image](https://user-images.githubusercontent.com/26542929/75114447-3953ce00-5699-11ea-8466-629ebde0784d.png)
 
